@@ -42,7 +42,8 @@ app.use(
 );
 
 // ✅ REQUIRED for preflight
-app.options("*", cors());
+app.options("/*", cors());
+
 
 app.use(express.json());
 
