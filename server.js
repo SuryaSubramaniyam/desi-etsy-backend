@@ -35,25 +35,11 @@ app.use('/api/categories', categoryRoutes);
 // ✅ Static file serving for uploaded images
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-app.get("/", (req, res) => {
-  res.send("✅ Desi Etsy Backend is running");
-});
-
-
 // MongoDB connection
 const PORT = process.env.PORT || 8888;
-
-mongoose.connect(process.env.MONGO_URI, {
-    serverSelectionTimeoutMS: 5000, // ⬅️ VERY IMPORTANT
-  })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("✅ MongoDB Connected Successfully");
-
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on port ${PORT}`);
-    });
+    console.log('✅ MongoDB Connected Successfully');
+    app.listen(PORT, () => console.log(`🚀 Server is running on port ${PORT}`));
   })
-  .catch((err) => {
-    console.error("❌ MongoDB Connection Error:", err.message);
-    process.exit(1); // ⬅️ prevents Render from hanging
-  });
+  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
