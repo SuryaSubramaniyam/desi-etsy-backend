@@ -2,7 +2,7 @@
 import Artisan from '../models/Artisan.js';
 import Order from "../models/Order.js";
 import Product from "../models/Product.js";
-import Review from '../models/Review.js';
+import Review from '../models/review.js';
 
 // -------------------------------------
 // 🚀 Artisan Registration Request
