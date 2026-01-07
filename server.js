@@ -39,15 +39,16 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 const PORT = process.env.PORT || 8888;
 
 mongoose
-  .connect(process.env.MONGO_URI,)
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000,
+  })
   .then(() => {
-    console.log("✅ MongoDB Connected Successfully");
-
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on port ${PORT}`);
-    });
+    console.log("✅ MongoDB Connected");
+    app.listen(PORT, () =>
+      console.log(`🚀 Server running on port ${PORT}`)
+    );
   })
   .catch((err) => {
-    console.error("❌ MongoDB Connection Error:", err.message);
-    process.exit(1); // ⬅️ prevents Render from hanging
+    console.error("❌ MongoDB connection failed:", err.message);
+    process.exit(1); // 🔥 REQUIRED for Render
   });
