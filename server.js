@@ -37,9 +37,17 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // MongoDB connection
 const PORT = process.env.PORT || 8888;
-mongoose.connect(process.env.MONGO_URI)
+
+mongoose
+  .connect(process.env.MONGO_URI,)
   .then(() => {
-    console.log('✅ MongoDB Connected Successfully');
-    app.listen(PORT, () => console.log(`🚀 Server is running on port ${PORT}`));
+    console.log("✅ MongoDB Connected Successfully");
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running on port ${PORT}`);
+    });
   })
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+  .catch((err) => {
+    console.error("❌ MongoDB Connection Error:", err.message);
+    process.exit(1); // ⬅️ prevents Render from hanging
+  });
