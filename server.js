@@ -21,7 +21,7 @@ const __dirname = path.resolve(); // ✅ Fix for static path in ES Modules
 // Middlewares
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://desi-etsy-frontend-v2-gie6-1a502zso6-surya-ss-projects-2e8e98a2.vercel.app",
+  "https://desi-etsy-frontend-v2-p22pbfofa-surya-ss-projects-2e8e98a2.vercel.app",
 ];
 
 app.use(
