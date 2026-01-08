@@ -19,24 +19,21 @@ const __dirname = path.resolve(); // ✅ Fix for static path in ES Modules
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://desi-etsy-frontend-v2-l7l79okjl-surya-ss-projects-2e8e98a2.vercel.app",
-];
 
+
+/* 🔥 CORS MUST COME FIRST */
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    return callback(null, false);
-  },
+  origin: "https://desi-etsy-frontend-v2-l7l79okjl-surya-ss-projects-2e8e98a2.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-// ✅ THIS LINE IS CRITICAL
+/* 🔥 HANDLE PREFLIGHT */
+app.options("*", cors());
+
 app.use(express.json());
+
 
 
 // Routes
