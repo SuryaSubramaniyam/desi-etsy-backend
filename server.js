@@ -35,13 +35,9 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-// 🔥 THIS LINE FIXES YOUR ISSUE
-app.options("/api/*", cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
-
+// ✅ THIS LINE IS CRITICAL
 app.use(express.json());
+
 
 // Routes
 app.use('/api/auth', authRoutes);
