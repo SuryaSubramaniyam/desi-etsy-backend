@@ -13,7 +13,9 @@ import userRoutes from './routes/userRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import categoryRoutes from "./routes/categoryRoutes.js";
 
+dotenv.config();
 
+const __dirname = path.resolve(); // ✅ Fix for static path in ES Modules
 
 const app = express();
 
@@ -30,10 +32,6 @@ app.use(cors({
 app.options("*", cors());
 
 app.use(express.json());
-
-dotenv.config();
-
-const __dirname = path.resolve(); // ✅ Fix for static path in ES Modules
 
 // Routes
 app.use('/api/auth', authRoutes);
